@@ -1,0 +1,11 @@
+pandas
+geopandas
+scikit-learn
+xgboost
+flask
+Flask-Cors
+joblib
+numpy
+shapely
+scipy
+Flask-SQLAlchemy

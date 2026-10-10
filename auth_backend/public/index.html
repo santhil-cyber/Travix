@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aadhaar Audit System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="login-view">
+        <div class="login-container">
+            <h2>Login via Aadhaar</h2>
+            <div class="input-group">
+                <input type="text" id="aadhaarNumber" value="111122223333" placeholder="Enter Aadhaar Number">
+            </div>
+            <div class="input-group">
+                <input type="text" id="name" value="Rajesh Kumar" placeholder="Enter Name">
+            </div>
+            <div class="input-group">
+                <input type="text" id="dob" value="1990-05-15" placeholder="Enter DOB (YYYY-MM-DD)">
+            </div>
+            <div class="input-group captcha-group">
+                <input type="text" id="captcha-input" placeholder="Enter Captcha">
+                <canvas id="captcha-canvas" width="150" height="50"></canvas>
+                <button id="reload-captcha" onclick="generateCaptcha()">&#x21bb;</button>
+            </div>
+            <button id="auth-button" onclick="requestAuth()">Login</button>
+            <div id="login-status"></div>
+        </div>
+    </div>
+
+    <div id="dashboard-view" style="display: none;">
+        <h1>Authority Dashboard</h1>
+        <button id="logout-button" onclick="logout()">Logout</button>
+        <div class="dashboard-container">
+            <div class="search-panel">
+                <h2>Search Authentication History</h2>
+                <input type="text" id="search-uid" placeholder="Enter Aadhaar Number to Search">
+                <button onclick="searchHistory()">Search</button>
+            </div>
+            <div class="ledger-panel">
+                <h2>Authentication Ledger (Blockchain)</h2>
+                <div id="blockchain-view"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

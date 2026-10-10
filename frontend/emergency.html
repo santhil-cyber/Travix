@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emergency Assistance | Travix</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="em.css">
+</head>
+<body>
+  <header class="nav">
+    <div style="display: flex; justify-content: space-between; align-items: center; max-width: 900px; margin: 0 auto 15px auto;">
+      <a href="index.html" style="color: #00ff88; text-decoration: none; font-weight: bold; display: flex; align-items: center; gap: 8px;">
+        <i class="fas fa-arrow-left"></i> Back to Dashboard
+      </a>
+      <span style="color: #ff4757; font-weight: bold; font-size: 0.9rem;">
+        <i class="fas fa-satellite-dish"></i> 24/7 SOS MONITOR
+      </span>
+    </div>
+    <h1>🚨 Emergency Assistance</h1>
+    <p style="color: #ffffff;">Your safety companion – quick access to help when you need it most.</p>
+  </header>
+
+  <main class="container">
+
+    <!-- SOS + Share Location -->
+    <section class="sos-section">
+      <button class="sos-btn" onclick="activateSOS()">🔴 SOS Alert</button>
+      <button class="share-btn" onclick="shareLocation()">📍 Share Location</button>
+    </section>
+
+    <!-- Live Emergency Map -->
+    <section class="quick-dial" style="margin-bottom: 25px;">
+      <h2>📍 Your Current Safe Zone & Position</h2>
+      <div id="map" style="height: 300px; width: 100%; border-radius: 8px; margin-top: 12px; border: 1px solid #333;"></div>
+    </section>
+
+    <!-- Quick Dial -->
+    <section class="quick-dial">
+      <h2>Quick Dial Helplines</h2>
+      <div class="buttons">
+        <button onclick="window.location.href='tel:100'">👮 Police (100/112)</button>
+        <button onclick="window.location.href='tel:108'">🚑 Ambulance (108)</button>
+        <button onclick="window.location.href='tel:101'">🚒 Fire Service (101)</button>
+        <button onclick="window.location.href='tel:1091'">👩 Women Helpline (1091 / 181)</button>
+        <button onclick="window.location.href='tel:1363'">🌍 Tourist Helpline (1363)</button>
+      </div>
+    </section>
+   
+    <!-- General Safety Tips -->
+    <section class="safety-tips">
+      <h2>General Safety Tips</h2>
+      <ul>
+        <li>💰 During Robbery: Stay calm, don’t resist, and call police immediately.</li>
+        <li>🙅 Harassment: Use SOS alert and move to nearest safe zone.</li>
+        <li>🩺 Medical Emergency: Call 108 and inform nearby people.</li>
+        <li>🛂 Lost Passport: Report to police & nearest embassy quickly.</li>
+        <li>📱 Always keep phone charged & share your live location with trusted contacts.</li>
+        <li>🚖 Verify cab/driver details before boarding. Prefer official apps.</li>
+      </ul>
+    </section>
+
+    <!-- Women Safety -->
+    <section class="women-safety">
+      <h2>Women Safety</h2>
+      <p>Safe rides, verified female drivers, and access to women-specific helplines for secure travel.</p>
+      <div class="ws-buttons">
+        <button onclick="callHelpline()">📞 Call Women Helpline</button>
+        <button onclick="findSafeRides()">🚖 Find Safe Rides</button>
+        <button onclick="triggerSOS()">🆘 Quick SOS</button>
+      </div>
+    </section>
+
+    <!-- Safety Tabs -->
+    <div class="tabs" role="tablist" aria-label="Safety topics">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="panel-fire" id="tab-fire">🔥 Fire Safety</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-flood" id="tab-flood">🌊 Flood Safety</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-quake" id="tab-quake">🌍 Earthquake Safety</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-general" id="tab-general">🛟 General Emergency</button>
+    </div>
+
+    <section id="panel-fire" class="panel" role="tabpanel" aria-labelledby="tab-fire">
+      <h2>Fire Safety</h2>
+      <ul>
+        <li>Install smoke detectors on every floor and test monthly.</li>
+        <li>Plan and practice an escape route; keep exits clear.</li>
+        <li>Keep a fire extinguisher accessible and know how to use it (PASS).</li>
+        <li>Avoid overloaded outlets and unplug unused appliances.</li>
+        <li>Store flammable materials safely and away from heat sources.</li>
+      </ul>
+    </section>
+
+    <section id="panel-flood" class="panel hidden" role="tabpanel" aria-labelledby="tab-flood">
+      <h2>Flood Safety</h2>
+      <ul>
+        <li>Know your area's flood risk and have an evacuation plan.</li>
+        <li>Keep important documents waterproofed and elevated.</li>
+        <li>Move to higher ground immediately if flood warnings are issued.</li>
+        <li>Do not walk or drive through floodwaters — 6 inches can knock you down.</li>
+        <li>Shut off electricity and gas if instructed by authorities.</li>
+      </ul>
+    </section>
+
+    <section id="panel-quake" class="panel hidden" role="tabpanel" aria-labelledby="tab-quake">
+      <h2>Earthquake Safety</h2>
+      <ul>
+        <li>Drop, cover and hold on — protect your head and neck.</li>
+        <li>Secure heavy furniture and mount shelves to studs.</li>
+        <li>Create a family communication and reunification plan.</li>
+        <li>Keep an emergency kit with water, food, flashlight and batteries.</li>
+        <li>After shaking stops, check for hazards (gas leaks, structural damage).</li>
+      </ul>
+    </section>
+
+    <section id="panel-general" class="panel hidden" role="tabpanel" aria-labelledby="tab-general">
+      <h2>General Emergency Safety</h2>
+      <ul>
+        <li>Assemble a 72-hour emergency kit (water, food, meds, tools).</li>
+        <li>Keep a list of emergency contacts and local emergency numbers.</li>
+        <li>Learn basic first aid and CPR.</li>
+        <li>Stay informed via battery/hand-crank radio or phone alerts.</li>
+        <li>Practice situational awareness and avoid risky areas after an incident.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <audio id="sosSound" src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg"></audio>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script type="module" src="em.js"></script>
+</body>
+</html>

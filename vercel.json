@@ -1,0 +1,18 @@
+{
+  "buildCommand": "cd frontend && npm install && npm run build",
+  "outputDirectory": "frontend/dist",
+  "rewrites": [
+    {
+      "source": "/api/v1/map-data",
+      "destination": "/api/map-data"
+    },
+    {
+      "source": "/api/v1/zones/:path*",
+      "destination": "/api/zones"
+    },
+    {
+      "source": "/api/v1/zones",
+      "destination": "/api/zones"
+    }
+  ]
+}
