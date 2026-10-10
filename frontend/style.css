@@ -669,6 +669,20 @@ body {
 #map { 
     width: 100%; 
     height: 100%; 
+    background: #0f172a;
+}
+
+/* OpenStreetMap Dark Theme - Clean, zero watermarks, zero API key required */
+body:not(.light-mode) .leaflet-tile-pane {
+    filter: brightness(0.65) invert(1) contrast(2.8) hue-rotate(200deg) saturate(0.25) brightness(0.7);
+}
+
+body.light-mode .leaflet-tile-pane {
+    filter: none;
+}
+
+.leaflet-container {
+    background: #0f172a !important;
 }
 
 .alert-panel {

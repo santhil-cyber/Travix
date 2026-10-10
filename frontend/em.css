@@ -221,3 +221,10 @@ body{background:linear-gradient(180deg,#0b0b0b 0%, #121314 100%);color:var(--mut
 .tabs{gap:8px}
 .tab{padding:10px 12px;font-size:14px}
 }
+
+#map .leaflet-tile-pane {
+  filter: brightness(0.65) invert(1) contrast(2.8) hue-rotate(200deg) saturate(0.25) brightness(0.7);
+}
+#map.leaflet-container {
+  background: #0f172a !important;
+}

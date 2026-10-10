@@ -160,11 +160,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!map) {
             map = L.map('map', { attributionControl: false }).setView([28.6139, 77.2090], 10);
-            const currentTheme = localStorage.getItem('theme') || 'dark';
-            const tileUrl = currentTheme === 'light'
-                ? 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
-                : 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
-            tileLayer = L.tileLayer(tileUrl).addTo(map);
+            const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+            tileLayer = L.tileLayer(tileUrl, {
+                maxZoom: 19,
+                subdomains: ['a', 'b', 'c'],
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
             zoneLayers = { safe: L.layerGroup().addTo(map), warning: L.layerGroup().addTo(map), danger: L.layerGroup().addTo(map) };
             setupMapEventListeners();
         }
@@ -570,16 +571,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- THEME & UI EFFECTS ---
     function setTheme(theme) {
-        const lightTileUrl = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
-        const darkTileUrl = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
         if (theme === 'light') {
             document.body.classList.add('light-mode');
             if (themeToggleBtn) themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
-            if (tileLayer) tileLayer.setUrl(lightTileUrl);
         } else {
             document.body.classList.remove('light-mode');
             if (themeToggleBtn) themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
-            if (tileLayer) tileLayer.setUrl(darkTileUrl);
         }
         localStorage.setItem('theme', theme);
     }

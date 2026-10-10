@@ -68,8 +68,10 @@ function initMap() {
   const defaultLocation = [28.6139, 77.209]; // New Delhi
   const map = L.map('map').setView(defaultLocation, 12);
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '© OpenStreetMap contributors, © CARTO'
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    subdomains: ['a', 'b', 'c'],
+    attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
   const marker = L.marker(defaultLocation).addTo(map).bindPopup('<b>New Delhi Tourist Area</b><br>Emergency Patrol Active').openPopup();
